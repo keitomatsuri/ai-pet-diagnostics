@@ -1,5 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { questions } from "@/data/questions_en";
+import { questions } from "@/data/questions_ja";
 import { Question } from "@/types/question";
 import { OpenAIStream } from "@/lib/OpenAIStream";
 
@@ -28,17 +27,25 @@ export default async function handler(req: Request) {
     const qaText = generateQAText(questions, formData);
 
     if (qaText.length === 0) {
-      return `Please answer in Japanese and start with a recommendation, not a preamble.
-Please provide a recommendation for pet for the customer, along with rationale.
-Please pick randomly from animals that humans treat as pets and answer by breed if possible.`;
-    } else {
-      return `As an animal expert, you should answer to your customers.
-Please answer in Japanese and start with a recommendation, not a preamble.
-These are the results of the answers to the question to recommend the right pet for the customer.
-From the answers to this question, please provide a recommendation for pets for the customer, along with rationale.
-Please answer all animals that humans treat as pets, as far as possible, by breed.
+      return `動物の専門家として回答してください。
+ペットとして扱われている動物の中からランダムに、以下のフォーマットでペットをおすすめしてください。
+可能であれば、品種まで言及してください。
 
-${qaText}`;
+# 出力フォーマット
+おすすめのペット：{ペットの種類}
+理由：{そのペットをおすすめする理由}
+`;
+    } else {
+      return `動物の専門家として回答してください。
+以下の質問への回答を参考に、質問者にとっておすすめのペットを、根拠とともに回答してください。
+可能であれば、品種まで言及してください。
+
+${qaText}
+
+# 出力フォーマット
+おすすめのペット：{ペットの種類}
+理由：{そのペットをおすすめする理由}
+`;
     }
   }
 

@@ -74,6 +74,10 @@ export default function Questionnaire() {
       <div className="container mx-auto lg:px-48">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-center">
+            <div className="text-center">
+              <p>以下の質問に回答し、「診断する」ボタンを押してください。</p>
+              <p>※質問に全て答えなくても診断は可能です。</p>
+            </div>
             {questions.map((question: Question) => {
               return (
                 <div key={question.id} className="w-full my-6 bg-white border border-gray-200 rounded-lg shadow divide-y">
