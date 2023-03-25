@@ -1,10 +1,14 @@
-import '@/styles/globals.css'
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import '@/styles/globals.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_CLIENT_KEY!}
+      language="ja"
+    >
       <Head>
         <title>AIペット診断</title>
         <meta charSet="utf-8" />
@@ -24,7 +28,8 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}/og_image.png`} />
       </Head>
       <Component {...pageProps} />
-    </>
+    </GoogleReCaptchaProvider>
+
 
   )
 }

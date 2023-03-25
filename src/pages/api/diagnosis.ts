@@ -1,19 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Configuration, OpenAIApi } from "openai";
 import { questions } from "@/data/questions_en";
 import { Question } from "@/types/question";
 import { OpenAIStream } from "@/lib/OpenAIStream";
 
-// OpenAI
 export const config = {
   runtime: "edge",
 };
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(configuration);
 
 export default async function handler(req: NextApiRequest) {
   if (req.method === "POST") {
