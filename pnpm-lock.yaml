@@ -15,7 +15,6 @@ specifiers:
   postcss: ^8.4.21
   react: 18.2.0
   react-dom: 18.2.0
-  react-google-recaptcha-v3: ^1.10.1
   react-hook-form: ^7.43.7
   tailwindcss: ^3.2.7
   typescript: 5.0.2
@@ -27,7 +26,6 @@ dependencies:
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-google-recaptcha-v3: 1.10.1_biqbaboplfbrettd7655fr4n2y
   react-hook-form: 7.43.7_react@18.2.0
 
 devDependencies:
@@ -1414,12 +1412,6 @@ packages:
       function-bind: 1.1.1
     dev: true
 
-  /hoist-non-react-statics/3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
-    dependencies:
-      react-is: 16.13.1
-    dev: false
-
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -2094,17 +2086,6 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-google-recaptcha-v3/1.10.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-K3AYzSE0SasTn+XvV2tq+6YaxM+zQypk9rbCgG4OVUt7Rh4ze9basIKefoBz9sC0CNslJj9N1uwTTgRMJQbQJQ==}
-    peerDependencies:
-      react: ^16.3 || ^17.0 || ^18.0
-      react-dom: ^17.0 || ^18.0
-    dependencies:
-      hoist-non-react-statics: 3.3.2
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
   /react-hook-form/7.43.7_react@18.2.0:
     resolution: {integrity: sha512-38yehQkQQ5uufaPKFScs7jhLE8n3+LG9H/BZfFAiBL2+7piDmw/BrdNJV4irzMaPnWZGhmGLHVICHXNVGIuXZg==}
     engines: {node: '>=12.22.0'}
@@ -2116,6 +2097,7 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+    dev: true
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}

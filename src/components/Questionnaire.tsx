@@ -5,7 +5,6 @@ import { Question } from "@/types/question";
 import { Option } from "@/types/option";
 import { useState } from "react";
 import Loading from "./Loading";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 type FormData = {
   [key: string]: string;
@@ -18,8 +17,6 @@ export default function Questionnaire() {
   const [isLoading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
@@ -27,30 +24,6 @@ export default function Questionnaire() {
     setDiagnosticResult('')
     setLoading(true)
     setError('')
-
-    // recaptcha
-    let token
-    if (executeRecaptcha) {
-      token = await executeRecaptcha("Contact");
-    } else {
-      console.error("Google ReCaptchaが正常に読み込まれていません");
-    }
-
-    const recaptchaEndpoint = "api/recaptcha";
-    const recaptchaResponse = await fetch(recaptchaEndpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: token,
-      }),
-    });
-
-    if (!recaptchaResponse.ok) {
-      setError('リクエストに失敗しました。')
-      setLoading(false)
-    }
 
     // diagnosis
 
