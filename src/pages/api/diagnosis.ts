@@ -7,9 +7,10 @@ export const config = {
   runtime: "edge",
 };
 
-export default async function handler(req: NextApiRequest) {
+export default async function handler(req: Request) {
   if (req.method === "POST") {
-    const prompt = createPrompt(req.body);
+    const body = await req.json();
+    const prompt = createPrompt(body);
 
     const payload = {
       model: "gpt-3.5-turbo",
