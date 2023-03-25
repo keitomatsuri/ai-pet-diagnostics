@@ -11,13 +11,16 @@ type FormData = {
 }
 
 export default function Questionnaire() {
-  const [diagnosticResult, setDiagnosticResult] = useState<string>('ここにAIからの提案が表示されます。')
+  const defaultDiagnosticResult = 'ここにAIからの提案が表示されます。'
+
+  const [diagnosticResult, setDiagnosticResult] = useState<string>(defaultDiagnosticResult)
   const [isLoading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (formData: FormData) => {
+    setDiagnosticResult('')
     setError('')
     setLoading(true)
 
@@ -33,20 +36,33 @@ export default function Questionnaire() {
       body: JSONdata,
     }
 
-    const response = await fetch(endpoint, options)
+    try {
+      const response = await fetch(endpoint, options)
 
-    if (!response.ok) {
-      if (response.status == 429) {
-        setError('診断が混み合っています。時間をおいて再度お試しください。')
-      } else {
+      if (!response.ok) {
         setError('データの取得に失敗しました。時間をおいて再度お試しください。')
-      }
-      setLoading(false)
+        setLoading(false)
+      } else {
+        const data = response.body;
 
-    } else {
-      const result = await response.json()
-      setDiagnosticResult(result.text)
-      setLoading(false)
+        if (!data) {
+          return;
+        }
+        const reader = data.getReader();
+        const decoder = new TextDecoder();
+        let done = false;
+
+        while (!done) {
+          const { value, done: doneReading } = await reader.read();
+          done = doneReading;
+          const chunkValue = decoder.decode(value);
+          setDiagnosticResult((prev) => prev + chunkValue);
+        }
+
+        setLoading(false)
+      }
+    } catch (error) {
+
     }
   };
 
