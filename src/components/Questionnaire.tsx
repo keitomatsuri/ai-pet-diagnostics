@@ -113,7 +113,7 @@ export default function Questionnaire() {
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl px-6 py-3 mr-2 mb-2"
-              disabled={isLoading}>診断する</button>
+              disabled={isLoading}>診断する（無料）</button>
           </div>
         </form>
 
