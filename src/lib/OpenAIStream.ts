@@ -46,3 +46,5 @@ export async function OpenAIStream(payload: any) {
 
   return stream;
 }
+
+// Reference: https://vercel.com/blog/gpt-3-app-next-js-vercel-edge-functions#edge-functions-with-streaming

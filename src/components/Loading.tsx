@@ -8,3 +8,5 @@ export default function Loading() {
     </div>
   )
 }
+
+// Reference: https://zenn.dev/catnose99/articles/19a05103ab9ec7#spinner%EF%BC%88%E3%82%B9%E3%83%94%E3%83%8A%E3%83%BC%EF%BC%89
